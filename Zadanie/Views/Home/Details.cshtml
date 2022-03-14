@@ -1,0 +1,83 @@
+﻿@model Zadanie.Models.Order
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Подробности</h1>
+<hr />
+<div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Номер
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Number)
+        </dd>
+        <dt class = "col-sm-2">
+            Дата создания
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class = "col-sm-2">
+            Поставщик
+        </dt>
+        <dd class = "col-sm-10">
+            @ViewData["textprovider"]
+        </dd>
+    </dl>
+</div>
+
+<a asp-action="CreateOrderItem" class="btn btn btn-success" asp-route-orderId="@Model?.Id" >Добавить элемент заказа</a>
+<table class="table table-hover marign-block">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Название
+            </th>
+            <th>
+                Количество
+            </th>
+            <th>
+                Единица измерения 
+            </th>
+            <th>
+                Действия
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (OrderItem item in ViewBag.OrderItem) {
+       
+        <tr>         
+            <td>
+              
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td >               
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>  
+            <td >               
+                @Html.DisplayFor(modelItem => item.Unit)
+            </td>  
+            <td>
+                <a asp-action="EditOrderItem" asp-route-id="@item.Id">Изменить</a> |
+                <a asp-action="DeleteOrderItem" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-action="Index" class="btn btn-outline-success"><i class="far fa-plus-square">Вернуться</i></a> |
+    <a asp-action="EditOrder" class="btn btn-outline-success" asp-route-id="@Model?.Id"><i class="far fa-plus-square">Редактировать заказ</i></a> |  
+    <a asp-action="Delete" class="btn btn btn-danger" asp-route-id="@Model.Id">Удалить весь заказ</a> 
+</div>

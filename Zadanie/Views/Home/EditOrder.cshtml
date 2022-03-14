@@ -1,0 +1,46 @@
+﻿@model Zadanie.Models.Order
+
+@{
+    ViewData["Title"] = "EditOrder";
+}
+
+<h1>Редактирование заказа</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditOrder"  >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label class="control-label">Номер заказа</label>
+                <input asp-for="Number" class="form-control" />
+                <span asp-validation-for="Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Дата</label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group marign-block">
+                <label class="control-label">Поставщик</label>
+                <select asp-for="ProviderId" class="select" >
+                    @foreach(Provider provider in ViewBag.ProvList)
+                    {
+                        <option value="@provider.Id">@provider.Name</option>
+                    }
+                </select> 
+            </div>
+            <div class="form-group marign-block">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+     <a asp-action="Index" class="btn btn-outline-success"><i class="far fa-plus-square">Вернуться</i></a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

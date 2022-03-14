@@ -1,0 +1,40 @@
+﻿@model Zadanie.Models.Order
+
+@{
+    ViewData["Title"] = "CreateOrder";
+}
+
+<h1>Создание заказа</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateOrder">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group marign-block">
+                <label class="control-label">Номер заказа</label>
+                <input asp-for="Number" class="form-control" />
+                <span asp-validation-for="Number" class="text-danger"></span>
+            </div>
+            <div class="form-group marign-block">
+                <label class="control-label">Поставщик</label>
+                <select asp-for="ProviderId" class="select" >
+                    @foreach(Provider provider in ViewBag.ProvList)
+                    {
+                        <option value="@provider.Id">@provider.Name</option>
+                    }
+                </select> 
+            </div>
+            <div class="form-group marign-block">
+                <input type="submit" value="Создать" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-outline-success"><i class="far fa-plus-square">Вернуться</i></a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

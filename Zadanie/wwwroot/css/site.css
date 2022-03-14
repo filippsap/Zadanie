@@ -1,0 +1,48 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.time{
+    width:230px;  
+}
+
+.text-button-add{
+    font-size:12px;
+}
+
+.table-order {
+    border-collapse: collapse;
+  
+    border: 1px solid black;
+}
+
+th {
+    border: 1px solid black;
+}
+
+td {
+    border: 1px solid black;
+}
+
+.marign-block{
+    margin:10px 0px 10px 0px;
+}
+
+.select{
+    width:420px;
+}
